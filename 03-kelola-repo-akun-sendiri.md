@@ -275,6 +275,73 @@ Fast-forward
 Ketika kita berpindah dari komputer satu ke komputer lain ketika mengelola repositori lokal, kita perlu melakukan sinkronasi agar repositori yang dikelola tidak berantakan, atau masih sama seperti saat di komputer sebelumnya. Perintah sinkronasi :
 
 ```bash
-git pull
+$ git pull
 ```
 
+### Membatalkan Perubahan
+
+* **Langkah - Langkah** : 
+
+1. Membuat cabang / branch terlebih dahulu.
+2. Melakukan perubahan - perubahan.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git checkout -b edit-readme-2
+Switched to a new branch 'edit-readme-2'
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (edit-readme-2)
+$ code README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (edit-readme-2)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyek. Jadi agak kacau nih
+```
+3. Kembali lagi ke cabang utama (`main`).
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (edit-readme-2)
+$ git checkout main
+Switched to branch 'main'
+M       README.md
+Your branch is up to date with 'origin/main'.
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat readme.md
+# My Awesome Project
+
+Ini isi proyek. Jadi agak kacau nih
+```
+4. Apabila dokumen dirasa menjadi berantakan setelah mengalami perubahan, maka cabang tersebut bisa dihapus menggunakan `git branch -D <nama cabang>`.
+5. Pastikan bahwa cabang tersebut sudah benar - benar terhapus, Untuk melihat cabang `git branch`.
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git branch -D edit-readme-2
+Deleted branch edit-readme-2 (was dc8ebe7).
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git branch
+* main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat readme.md
+# My Awesome Project
+
+Ini isi proyek. Jadi agak kacau nih
+```
+6. Melakukan perintah `git reset --hard` untuk mengatur ulang index dan working tree. sehingga direktori akan benar-benar bersih dengan menggunakan perintah tersebut.
+
+7. Selesai.
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git reset --hard
+HEAD is now at dc8ebe7 Merge pull request #1 from rofikHa21/edit-readme-1
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyek
+```

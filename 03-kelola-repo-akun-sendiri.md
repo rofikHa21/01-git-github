@@ -213,3 +213,68 @@ To https://github.com/rofikHa21/awesome-project
  3. ketika tidak terdeteksi konflik pada saat pull request, maka klik **Merge pull request**.
 
  ![03](img/pr/pr-3.jpg)
+
+Setelah itu, `Confirm Merge`, branch yang kita kirimkan tadi sudah dimasukkan ke branch `main`. Setelah itu, merge di komputer lokal:
+
+ ```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git merge edit-readme-1
+Updating 59eb69a..7452706
+Fast-forward
+ README.md | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git branch
+  edit-readme-1
+* main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git branch -D edit-readme-1
+Deleted branch edit-readme-1 (was 7452706).
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git branch
+* main
+ ```
+
+* Perintah `git merge` berfungsi untuk menggabungkan riwayat" perubahan dari dua cabang atau lebih, atau menggabungkan cabang-cabang tersebut.
+* `git branch` berfungsi untuk mengecek daftar dari cabang yang ada.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git pull
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), 629 bytes | 209.00 KiB/s, done.
+From https://github.com/rofikHa21/awesome-project
+   59eb69a..dc8ebe7  main       -> origin/main
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git branch --set-upstream-to=origin/main main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git pull
+Updating 7452706..dc8ebe7
+Fast-forward
+```
+
+### Sinkronasi
+
+Ketika kita berpindah dari komputer satu ke komputer lain ketika mengelola repositori lokal, kita perlu melakukan sinkronasi agar repositori yang dikelola tidak berantakan, atau masih sama seperti saat di komputer sebelumnya. Perintah sinkronasi :
+
+```bash
+git pull
+```
+

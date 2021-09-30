@@ -1,6 +1,6 @@
 # Mengelola Repositori Sendiri
 
-## [**Halaman Awal**](README.md)
+[**Halaman Awal**](README.md)
 
 ## Langkah - langkah :
 
@@ -8,16 +8,16 @@
 
 1. Membuat Repositori kosng, dengan menekan simbol **+** disamping foto profile.
 
-<!--![01](img/03/menambah-1.jpg)-->
+![01](img/03/menambah-1.jpg)
 
-<img src="img/03/menambah-1.jpg" alt="01" style="width: 400px;">
 
 2. memberi nama repositori, mengatur repositori menjadi public, dan tidak mengisi radio button
 
-<img src="img/03/menambah-2.jpg" alt="01" style="width: 500px;">
+![02](img/03/menambah-2.jpg)
+
 
 #
-### **Clone Repositori Github ke Local (Git)**
+### Clone Repositori Github ke Local (Git)
 
 clone merupakan teknik untuk menggandakan repositori dari github ke lokal repositori, jadi user bisa melakukan edit dokumen secara offline.
 
@@ -35,7 +35,7 @@ jika repositori kosong maka akan muncul warning message bahwa repositori yang di
 Setiap repo memilik branch, nama branch tersebut meiliki nama default yaitu `master` namun pada saat ini banyak team menggunakan `main` saebagai nama default dari repo mereka, user bisa mengaturnya saat melakukan instalasi dengan meilih pilihan kedua. bisa dilihat di [installasi git langkah ke 6](01-install-git.md).
 #
 
-### **Cara melakukan branching**
+### Cara melakukan branching
 
 ```bash
 mrofi@LUCIENNE-IPS3 MINGW64 ~

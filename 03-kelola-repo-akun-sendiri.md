@@ -280,7 +280,7 @@ $ git pull
 
 ### Membatalkan Perubahan
 
-* **Langkah - Langkah** : 
+* Langkah - Langkah : 
 
 1. Membuat cabang / branch terlebih dahulu.
 2. Melakukan perubahan - perubahan.
@@ -345,3 +345,366 @@ $ cat README.md
 
 Ini isi proyek
 ```
+
+### Undo Commit Terakhir
+
+Suatu saat, mungkin kita sudah terlanjur melakukan push perubahan ke repo GitHub, setelah itu kita baru menyadari bahwa perubahan tersebut salah. Untuk itu, kita bisa melakukan `git revert`.
+
+* Langkah - langkah : 
+
+1. contoh dibawah ini adalah ketika melakukan perubahan pada dokumen, kemudian sudah dilakukan commit dan push ke remote repo atau github.
+Kemudian akan dikembalikan ke posisi terakhir sebelum dilakukan `commit`.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyek
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git log --oneline
+dc8ebe7 (HEAD -> main, origin/main) Merge pull request #1 from rofikHa21/edit-readme-1
+7452706 (origin/edit-readme-1) Add: Isi README.md
+59eb69a Add: README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ code README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git add -A
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git commit -m "Add: contents"
+[main e5b7690] Add: contents
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 292 bytes | 292.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/rofikHa21/awesome-project
+   dc8ebe7..e5b7690  main -> main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ code README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git add -A
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git commit -m "Add: contents - 2"
+[main 16a2602] Add: contents - 2
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 276 bytes | 276.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/rofikHa21/awesome-project
+   e5b7690..16a2602  main -> main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+
+Ini isi 2
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+
+2. lakukan perintah `git revert HEAD`, otomatis akan membuka teks editor kita diperintahkan untuk mengisi pesan commit untuk pembatalan.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git revert HEAD
+hint: Waiting for your editor to close the file...
+[main 2021-09-28T01:41:46.127Z] update#setState idle
+[main 2021-09-28T01:42:16.144Z] update#setState checking for updates
+[main 2021-09-28T01:42:16.243Z] update#setState idle
+[main 5b44bc3] Revert "Add: contents - 2"
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+```
+* melakukan cek status repo, dan saya melakukan beberapa perubahan lagi dengan menghapus 4 baris, kemudian melakukan push.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 322 bytes | 322.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/rofikHa21/awesome-project
+   16a2602..5b44bc3  main -> main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+
+Ini isi 2
+
+Ini isi 3
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ code README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git add -A
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git commit -m "Add contents - 2"
+[main 5a40228] Add contents - 2
+ 1 file changed, 4 deletions(-)
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (1/1), done.
+Writing objects: 100% (3/3), 290 bytes | 290.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/rofikHa21/awesome-project
+   5b44bc3..5a40228  main -> main
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+
+```
+
+###  Apabila `commit` sudah dilakukan, namun belum di-push ke repo github, cara membatalkannya adalah :
+
+1. Melakukan perubahan terlebih dahulu.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ code README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git add -A
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git commit -m "Add: isi tambahan 1"
+[main 516439a] Add: isi tambahan 1
+ 1 file changed, 2 insertions(+)
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+```
+2. pada langkah ini saya melakukan logging untuk melihat ditempat mana saya akan melakukan `reset` untuk mengapus satu index diatasnya.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git log --oneline
+516439a (HEAD -> main) Add: isi tambahan 1
+5a40228 (origin/main) Add contents - 2
+5b44bc3 Revert "Add: contents - 2"
+16a2602 Add: contents - 2
+e5b7690 Add: contents
+dc8ebe7 Merge pull request #1 from rofikHa21/edit-readme-1
+7452706 (origin/edit-readme-1) Add: Isi README.md
+59eb69a Add: README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git reset --hard HEAD^
+HEAD is now at 5a40228 Add contents - 2
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+
+```
+### Kembali ke perubahan pada saat yang sudah lama
+
+1. Untuk kembali ke perubahan pada saat yang sudah lama, yang perlu dilakukan adalah melakukan git revert <posisi> kemudian mengedit secara manual kemudian push ke repo.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ cat README.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+
+Ini isi 2
+
+Ini isi 3
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git log --oneline
+c6ed7a2 (HEAD -> main, origin/main) Add: isi 3
+bdc64f4 Add: isi 2
+5a40228 Add contents - 2
+5b44bc3 Revert "Add: contents - 2"
+16a2602 Add: contents - 2
+e5b7690 Add: contents
+dc8ebe7 Merge pull request #1 from rofikHa21/edit-readme-1
+7452706 (origin/edit-readme-1) Add: Isi README.md
+59eb69a Add: README.md
+
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git revert bdc64f4
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+error: could not revert bdc64f4... Add: isi 2
+hint: after resolving the conflicts, mark the corrected paths
+hint: with 'git add <paths>' or 'git rm <paths>'
+hint: and commit the result with 'git commit'
+```
+
+2. Setelah itu, jika dilihat pada file, akan muncul tambahan untuk memudahkan meng-edit. File ini harus di-resolve terlebih dahulu, setelah itu baru di add dan commit:
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main|REVERTING)
+$ cat readme.md
+# My Awesome Project
+
+Ini isi proyeka
+
+Ini isi 1
+<<<<<<< HEAD
+
+Ini isi 2
+
+Ini isi 3
+=======
+>>>>>>> parent of bdc64f4 (Add: isi 2)
+
+```
+
+3. Edit file tersebut di teks editor, setelah itu simpan. 
+        harap untuk menghilangkan baris yang bertanda `<<<<<<` dan `>>>>>>>` untuk melakukan resolving.
+
+```bash
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main|REVERTING)
+$ code README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main|REVERTING)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+You are currently reverting commit bdc64f4.
+  (fix conflicts and run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+        both modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+4. Setelah itu, lanjutkan proses revert. Saat `git revert --continue` user diperintahkan untuk mengisikan pesan revert.
+
+
+```bash 
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main|REVERTING)
+$ git add README.md
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main|REVERTING)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+You are currently reverting commit bdc64f4.
+  (all conflicts fixed: run "git revert --continue")
+  (use "git revert --skip" to skip this patch)
+  (use "git revert --abort" to cancel the revert operation)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main|REVERTING)
+$ git revert --continue
+hint: Waiting for your editor to close the file...
+[main 2021-09-28T02:29:32.293Z] update#setState idle
+[main 5013112] Revert "Add: isi 2"
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+mrofi@LUCIENNE-IPS3 MINGW64 ~/awesome-project (main)
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 355 bytes | 355.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/rofikHa21/awesome-project
+   c6ed7a2..5013112  main -> main
+```
+
+[**Kembali ke Halaman Utama**](README.md)

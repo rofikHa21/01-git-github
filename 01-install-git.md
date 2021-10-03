@@ -87,3 +87,7 @@ lewati saja langkah ini.
 
 ![18](img/01/install-18.jpg).
 
+19. Selesai
+
+[**Kembali Ke Halaman Utama**](README.md)
+

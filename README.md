@@ -1,6 +1,8 @@
 # Laporan Eksplorasi Repositori Git dan Github
 
-Perkenalkan Nama saya Rofik,
+- Nama : Rofik Hakiki
+- NIM : 5200411464
+- Mata Kuliah : Metodologi Desain Perangkat Lunak Praktik - IV
 
 Dokumen ini berisi langkah - langkah dan penjelasan dari praktik pengelolaan dokumen digital - kode sumber, dokumentasi, dan lain-lain pada mata kuliah MDPL/MPPL praktik Kelompok IV, yang berisikan : 
 

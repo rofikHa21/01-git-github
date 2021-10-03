@@ -6,12 +6,12 @@
 
 ### Membuat Repositori di Github
 
-1. Membuat Repositori kosng, dengan menekan simbol **+** disamping foto profile.
+1. Membuat Repositori kosong, dengan menekan simbol **+** disamping foto profile.
 
 ![01](img/03/menambah-1.jpg)
 
 
-2. memberi nama repositori, mengatur repositori menjadi public, dan tidak mengisi radio button
+2. memberi nama repositori, kolom deskripsi boldeh diisi atau tidak diisi, mengatur repositori menjadi public.
 
 ![02](img/03/menambah-2.jpg)
 

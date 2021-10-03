@@ -10,6 +10,11 @@ Dokumen ini berisi langkah - langkah dan penjelasan dari praktik pengelolaan dok
 
 2. [Konfigurasi Git](02-konfigurasi-git.md)
 
-3. [Mengelola Repositori Sendiri](03-kelola-repo-akun-sendiri.md)
+3. <details>
+    <summary><b>Mengelola repositori</b></summary>
+        
+    - [Mengelola Repositori akun Sendiri](03-kelola-repo-akun-sendiri.md)
 
- 
+    - [Mengelola Repositori Sendiri Di Akun Organisasi](04-kelola-repo-sendiri-organisasi.md)
+
+    </details>
